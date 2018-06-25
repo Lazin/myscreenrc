@@ -1,0 +1,23 @@
+# An alternative hardstatus to display a bar at the bottom listing the
+# windownames and highlighting the current windowname in blue. (This is only
+# enabled if there is no hardstatus setting for your terminal)
+
+# terminfo and termcap for nice 256 color terminal
+# # allow bold colors - necessary for some reason
+attrcolor b ".I"
+# # tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+defscrollback 30000 # Use a 30000-line scrollback buffer
+termcapinfo xterm* ti@:te@
+
+# Disable visual bell
+vbell off
+
+# Restore screen after less and vim exit
+altscreen on
+
+# Show the status line with highlights
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{+b rk}%H%{gk} |%c %{yk}%d.%m.%Y | %{wk} %?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw%? | %{rk} "
